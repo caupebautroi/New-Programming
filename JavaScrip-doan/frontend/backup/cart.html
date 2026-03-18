@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng - FoodieApp</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Thêm một chút CSS riêng cho giỏ hàng cho đẹp */
+        .cart-container { display: flex; gap: 30px; flex-wrap: wrap; margin-top: 20px;}
+        .cart-items-wrapper { flex: 2; min-width: 60%; }
+        .cart-summary { flex: 1; background: #fff; padding: 25px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); height: fit-content; border: 1px solid #eee; min-width: 300px;}
+        .cart-item { display: flex; align-items: center; gap: 20px; background: #fff; padding: 15px; border-radius: var(--radius-md); margin-bottom: 15px; box-shadow: var(--shadow-sm); }
+        .cart-item img { width: 90px; height: 90px; object-fit: cover; border-radius: 12px; }
+        .cart-item-info { flex-grow: 1; }
+        .qty-badge { background: #FFF1E6; color: var(--primary-color); padding: 5px 15px; border-radius: 8px; font-weight: bold; }
+        .summary-row { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 16px; color: var(--text-muted); }
+        .summary-total { display: flex; justify-content: space-between; margin-top: 20px; padding-top: 20px; border-top: 2px dashed #eee; font-size: 20px; font-weight: bold; color: var(--text-main); }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Foodie<span>App</span></a>
+            <nav></nav> </div>
+    </header>
+
+    <main class="container section">
+        <h2 class="section-title">Giỏ hàng của bạn</h2>
+        
+        <div class="cart-container" id="cart-main-view">
+            </div>
+    </main>
+
+    <script src="auth.js"></script>
+    <script src="cart.js"></script>
+</body>
+</html>

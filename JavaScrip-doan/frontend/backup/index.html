@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodieApp - Khám Phá Ẩm Thực</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Foodie<span>App</span></a>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Tìm kiếm cửa hàng, món ăn...">
+                <button id="search-btn"><i class="fa fa-search"></i></button>
+            </div>
+            <nav>
+                <a href="#" onclick="handleCartClick(event)" style="text-decoration:none; color:var(--text-main); font-weight:600;">
+                    <i class="fa fa-shopping-cart"></i> Giỏ hàng
+                </a>
+                </a>
+                <a href="login.html" class="btn-outline">Đăng nhập</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="hero-banner">
+            <div>
+                <h2 style="font-size: 32px; margin-bottom: 10px;">Giao Đồ Ăn Tận Nơi</h2>
+                <p style="font-size: 18px; opacity: 0.9;">Khám phá những món ăn ngon nhất quanh bạn với ưu đãi lên đến 50%!</p>
+            </div>
+            <i class="fa-solid fa-motorcycle fa-4x" style="opacity: 0.8;"></i>
+        </div>
+
+        <section class="section">
+            <h2 class="section-title">Danh sách cửa hàng</h2>
+            <div id="restaurant-list" class="grid-layout">
+                </div>
+        </section>
+    </main>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+    <script src="auth.js"></script> <script src="home.js"></script> </body>
+</html>
+</body>
+</html>

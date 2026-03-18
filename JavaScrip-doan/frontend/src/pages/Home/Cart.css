@@ -1,0 +1,88 @@
+/* Danh sách món ăn giữa */
+.cart-items-wrapper {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  padding: 24px;
+  border: 1px solid #eee;
+}
+
+.cart-item-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-item-card:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.cart-item-card:first-child {
+  padding-top: 0;
+}
+
+.item-qty {
+  background-color: #fc8019; /* Màu cam */
+  color: white;
+  font-weight: bold;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.item-img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%; /* Bo tròn ảnh món ăn như thiết kế */
+  object-fit: cover;
+  border: 2px solid #eee;
+}
+
+/* Khối tổng kết rổ hàng (My Basket) bên phải */
+.basket-summary {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #eee;
+}
+
+.basket-header {
+  background-color: #0c8a44; /* Màu xanh lá chuẩn */
+  padding: 20px;
+  text-align: center;
+}
+
+.basket-body {
+  padding: 24px;
+}
+
+.total-pay-box {
+  background-color: #fc8019; /* Màu cam nổi bật */
+  color: white;
+  padding: 15px 20px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.btn-checkout {
+  background-color: #0c8a44;
+  color: white;
+  border-radius: 8px; /* Bo góc vuông vức hơn */
+  transition: all 0.2s;
+}
+
+.btn-checkout:hover {
+  background-color: #096b34;
+  color: white;
+  transform: translateY(-2px);
+}

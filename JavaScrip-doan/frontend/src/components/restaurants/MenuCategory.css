@@ -1,0 +1,132 @@
+/* Tiêu đề to và đậm */
+.category-title {
+  font-weight: 800;
+  font-size: 2rem;
+  color: #000;
+}
+
+/* Thẻ món ăn dùng flexbox để dàn hàng ngang */
+.food-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  height: 100%;
+  border: 1px solid #f0f0f0;
+}
+
+/* Cột thông tin chữ chiếm phần lớn không gian */
+.food-info {
+  flex: 1;
+  padding-right: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.food-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+/* Giới hạn mô tả ở 3 dòng, dài quá hiện dấu ... */
+.food-desc {
+  font-size: 0.8rem;
+  color: #666;
+  margin-bottom: auto; /* Đẩy giá tiền xuống sát đáy */
+  display: -webkit-box;
+  
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.food-price {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+/* Hộp chứa ảnh bên phải cố định kích thước */
+.food-image-box {
+  width: 120px;
+  height: 120px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.food-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Nút bấm tròn trịa đè lên góc ảnh */
+.add-btn {
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  color: black;
+  border: 1px solid #f0f0f0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-btn:hover {
+  background: #0b1a30;
+  color: white;
+}
+
+.food-card {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.food-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+.food-img {
+  transition: transform 0.4s ease;
+}
+
+.food-card:hover .food-img {
+  transform: scale(1.1);
+}
+
+.add-btn {
+  transition: all 0.25s ease;
+}
+
+.food-card:hover .add-btn {
+  transform: scale(1.1);
+  background: #ff7a00;
+  color: white;
+}
+
+.food-card:hover {
+  box-shadow: 0 10px 25px rgba(255, 122, 0, 0.15);
+}
+
+.food-name {
+  transition: color 0.3s ease;
+}
+
+.food-card:hover .food-name {
+  color: #ff7a00;
+}

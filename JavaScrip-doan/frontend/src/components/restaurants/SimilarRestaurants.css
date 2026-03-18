@@ -1,0 +1,44 @@
+/* Khung của từng thẻ nhà hàng */
+.similar-card {
+  border-radius: 12px;
+  overflow: hidden; /* Cắt phần bị lồi ra khỏi góc bo */
+  display: flex;
+  flex-direction: column;
+  height: 180px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  border: 1px solid #eee;
+}
+
+.similar-card:hover {
+  transform: translateY(-5px); /* Hiệu ứng nảy nhẹ lên khi hover chuột */
+  box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+}
+
+/* Khu vực hiển thị logo */
+.similar-logo-box {
+  flex: 1; /* Cho khu vực này chiếm hết phần không gian còn lại */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.similar-logo-box img {
+  width: 70%;
+  max-height: 100px;
+  object-fit: contain; /* Đảm bảo logo không bị méo */
+}
+
+/* Dải màu tên nhà hàng ở dưới đáy */
+.similar-name-bar {
+  padding: 12px 10px;
+  text-align: center;
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Nếu tên quá dài sẽ hiện dấu ... */
+}

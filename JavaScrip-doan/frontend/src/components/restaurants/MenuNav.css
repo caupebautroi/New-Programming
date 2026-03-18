@@ -1,0 +1,43 @@
+/* Lớp vỏ trải dài full màn hình màu cam */
+.menu-nav-wrapper {
+  background-color: #fc8019; /* Màu cam chuẩn theo thiết kế */
+  width: 100%;
+  padding: 15px 0;
+}
+
+/* Khối chứa các nút, thiết lập cuộn ngang mượt mà cho màn hình nhỏ */
+.menu-nav-list {
+  gap: 15px;
+  overflow-x: auto; /* Cho phép cuộn ngang nếu danh sách quá dài */
+  white-space: nowrap; /* Không cho rớt dòng */
+  scrollbar-width: none; /* Ẩn thanh cuộn trên Firefox */
+}
+
+/* Ẩn thanh cuộn trên Chrome/Safari/Edge cho đẹp */
+.menu-nav-list::-webkit-scrollbar {
+  display: none;
+}
+
+/* Định dạng từng nút danh mục */
+.menu-nav-item {
+  background: transparent;
+  border: none;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 8px 24px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
+
+/* Hiệu ứng khi hover chuột vào nút chưa chọn */
+.menu-nav-item:hover:not(.active) {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Định dạng riêng cho nút đang được chọn (Active) */
+.menu-nav-item.active {
+  background-color: #000000;
+  color: #ffffff;
+}

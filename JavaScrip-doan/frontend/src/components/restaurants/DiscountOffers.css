@@ -1,0 +1,79 @@
+/* Khung của từng thẻ giảm giá */
+.offer-card {
+  position: relative;
+  height: 240px;
+  border-radius: 16px;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Lớp phủ đen mờ từ dưới lên để chữ màu trắng dễ đọc trên mọi nền ảnh */
+.offer-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 60%);
+  z-index: 1;
+}
+
+/* Nhãn -20% màu xanh đen giống thiết kế */
+.offer-discount {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  background-color: #0b1a30; 
+  color: white;
+  padding: 10px 16px;
+  font-weight: 700;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  z-index: 2;
+}
+
+/* Khối chứa tên nhà hàng và tiêu đề */
+.offer-content {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 2;
+  color: white;
+  padding-right: 60px; /* Chừa chỗ cho nút dấu cộng không đè lên chữ */
+}
+
+.offer-restaurant {
+  color: #fc8019; /* Màu cam chuẩn */
+  font-weight: 600;
+  margin-bottom: 4px;
+  font-size: 0.9rem;
+}
+
+.offer-title {
+  font-weight: 700;
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+/* Nút bấm hình tròn góc phải */
+.offer-add-btn {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  z-index: 2;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: none;
+  background-color: white;
+  color: #0b1a30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.offer-add-btn:hover {
+  transform: scale(1.1); /* Phóng to nhẹ khi rê chuột */
+}

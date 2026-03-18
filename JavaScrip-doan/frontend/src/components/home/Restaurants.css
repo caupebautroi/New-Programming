@@ -1,0 +1,54 @@
+.restaurant-title{
+font-weight:600;
+margin-bottom:20px;
+}
+
+/* grid layout */
+
+.restaurant-grid{
+display:grid;
+grid-template-columns:repeat(6,1fr);
+gap:20px;
+}
+
+/* card */
+
+.restaurant-card{
+border-radius:12px;
+overflow:hidden;
+cursor:pointer;
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+transition:0.3s;
+background:white;
+}
+
+.restaurant-card:hover{
+transform:translateY(-6px);
+box-shadow:0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* logo area */
+
+.restaurant-logo{
+height:120px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.restaurant-logo img{
+width:90px;
+height:90px;
+object-fit:contain;
+}
+
+/* name bar */
+
+.restaurant-name{
+background:#ff8a00;
+color:white;
+text-align:center;
+padding:10px;
+font-size:14px;
+font-weight:500;
+}

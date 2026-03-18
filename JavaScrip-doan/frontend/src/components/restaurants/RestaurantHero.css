@@ -1,0 +1,118 @@
+/* Khung chứa ảnh nền */
+.hero-banner-card {
+  position: relative;
+  width: 100%;
+  height: 280px; /* Chiều cao cố định */
+  border-radius: 16px;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px;
+  margin-bottom: 50px; /* Bắt buộc: Chừa khoảng trống bên dưới để 2 thẻ con lồi ra không bị lẹm */
+}
+
+/* Nội dung chữ bên trong */
+.hero-slogan {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: #f0f0f0;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+/* Các thẻ viền mỏng */
+.hero-badges {
+  display: flex;
+  gap: 15px;
+}
+
+.hero-badge-outline {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50px;
+  padding: 8px 20px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* --- KỸ THUẬT ĐỊNH VỊ (POSITION ABSOLUTE) --- */
+
+/* Thẻ giờ mở cửa màu vàng lồi ở góc dưới trái */
+.hero-open-time {
+  position: absolute;
+  bottom: -20px; /* Đẩy thụt xuống dưới 20px */
+  left: 20px;    /* Cách mép trái 20px */
+  background-color: #ffc107; /* Màu vàng */
+  color: #000;
+  font-weight: 600;
+  padding: 10px 24px;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  z-index: 2;
+}
+
+/* Thẻ đánh giá màu trắng lồi ở góc dưới phải */
+.hero-rating-card {
+  position: absolute;
+  bottom: -30px; /* Đẩy thụt xuống dưới nhiều hơn thẻ vàng */
+  right: 40px;   /* Cách mép phải 40px */
+  background-color: white;
+  color: black;
+  padding: 20px 30px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  z-index: 2;
+  min-width: 150px;
+}
+
+.rating-score {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin: 0;
+  line-height: 1;
+}
+
+.rating-stars {
+  font-size: 1rem;
+  margin: 8px 0;
+  letter-spacing: 2px;
+}
+
+.rating-count {
+  font-size: 0.85rem;
+  color: #888;
+  margin: 0;
+}
+
+/* Thanh tìm kiếm bên dưới Banner */
+.hero-bottom-bar {
+  margin-top: 60px; /* Tạo khoảng cách với phần Banner lồi lõm ở trên */
+}
+
+.search-input-box {
+  border: 1px solid #e0e0e0;
+  border-radius: 50px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  width: 300px;
+}
+
+.search-input-box input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 0.95rem;
+}

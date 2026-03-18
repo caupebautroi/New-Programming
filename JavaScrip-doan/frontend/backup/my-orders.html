@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đơn Hàng Của Tôi - FoodieApp</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Foodie<span>App</span></a>
+            <nav></nav> 
+        </div>
+    </header>
+
+    <main class="container section">
+        <h2 class="section-title"><i class="fa-solid fa-receipt" style="color: var(--primary-color);"></i> Lịch sử Đơn hàng</h2>
+        <p style="color: var(--text-muted); margin-bottom: 30px;">Theo dõi trạng thái các món ăn tuyệt hảo bạn đã đặt</p>
+        
+        <div id="customer-order-list">
+            <div class="loading" style="text-align: center; padding: 50px;">Đang tải dữ liệu...</div>
+        </div>
+    </main>
+
+    <script src="data.js"></script>
+    <script src="auth.js"></script>
+    <script src="my-orders.js"></script> </body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý tài khoản - FoodieApp</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Foodie<span>App</span></a>
+            <nav></nav> </div>
+    </header>
+
+    <main class="container section">
+        <div class="profile-layout">
+            
+            <aside class="profile-sidebar">
+                <div class="user-avatar-section">
+                    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Avatar">
+                    <h3 id="display-username">Đang tải...</h3>
+                    <p id="display-email" style="color: var(--text-muted); font-size: 14px;"></p>
+                </div>
+                <div class="sidebar-menu">
+                    <button class="menu-item active" onclick="switchTab('tab-info', this)"><i class="fa-solid fa-user-pen"></i> Thông tin cá nhân</button>
+                    <button class="menu-item" onclick="switchTab('tab-password', this)"><i class="fa-solid fa-shield-halved"></i> Đổi mật khẩu</button>
+                    <button class="menu-item" onclick="switchTab('tab-store', this)"><i class="fa-solid fa-store"></i> Đăng ký cửa hàng</button>
+                </div>
+            </aside>
+
+            <section class="profile-content">
+                
+                <div id="tab-info" class="tab-pane active">
+                    <h2 class="section-title">Hồ sơ của tôi</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 25px;">Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
+                    
+                    <form onsubmit="handleUpdateProfile(event)" class="delivery-form">
+                        <div class="delivery-input-group full-width">
+                            <label>Tên đăng nhập mới</label>
+                            <input type="text" id="prof-username" required>
+                        </div>
+                        <div class="delivery-input-group full-width">
+                            <label>Địa chỉ Email mới</label>
+                            <input type="email" id="prof-email" required>
+                        </div>
+                        <div class="full-width" style="margin-top: 15px;">
+                            <button type="submit" class="btn-primary" style="width: auto; padding: 12px 30px;">Lưu Thay Đổi</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="tab-password" class="tab-pane">
+                    <h2 class="section-title">Đổi mật khẩu</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 25px;">Để bảo mật tài khoản, vui lòng không chia sẻ mật khẩu cho người khác</p>
+                    
+                    <form onsubmit="handleChangePassword(event)" class="delivery-form">
+                        <div class="delivery-input-group full-width">
+                            <label>Mật khẩu hiện tại</label>
+                            <input type="password" id="old-pwd" required placeholder="••••••••">
+                        </div>
+                        <div class="delivery-input-group full-width">
+                            <label>Mật khẩu mới</label>
+                            <input type="password" id="new-pwd" required placeholder="Tối thiểu 6 ký tự">
+                        </div>
+                        <div class="delivery-input-group full-width">
+                            <label>Xác nhận mật khẩu mới</label>
+                            <input type="password" id="confirm-new-pwd" required placeholder="Nhập lại mật khẩu mới">
+                        </div>
+                        <div class="full-width" style="margin-top: 15px;">
+                            <button type="submit" class="btn-primary" style="width: auto; padding: 12px 30px;">Cập Nhật Mật Khẩu</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="tab-store" class="tab-pane">
+                    <h2 class="section-title">Trở thành Đối tác</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 25px;">Tạo cửa hàng của riêng bạn và bắt đầu kinh doanh trên FoodieApp ngay hôm nay!</p>
+                    
+                    <div style="background: #FFF1E6; padding: 15px; border-radius: 8px; margin-bottom: 25px; border-left: 4px solid var(--primary-color);">
+                        <p style="color: var(--primary-hover); font-size: 14px; font-weight: 600;">
+                            <i class="fa-solid fa-circle-info"></i> Sau khi tạo thành công, hệ thống sẽ chờ Admin phê duyệt để hiển thị lên Trang chủ.
+                        </p>
+                    </div>
+
+                    <form onsubmit="handleCreateStore(event)" class="delivery-form">
+                        <div class="delivery-input-group full-width">
+                            <label>Tên Cửa Hàng <span style="color:red">*</span></label>
+                            <input type="text" id="store-name" required placeholder="Ví dụ: Trà Sữa Cô Ba...">
+                        </div>
+                        <div class="delivery-input-group">
+                            <label>Phân loại món <span style="color:red">*</span></label>
+                            <input type="text" id="store-category" required placeholder="Ví dụ: Đồ uống, Món ăn vặt...">
+                        </div>
+                        <div class="delivery-input-group">
+                            <label>Thời gian chuẩn bị <span style="color:red">*</span></label>
+                            <input type="text" id="store-time" required placeholder="Ví dụ: 15-20 phút">
+                        </div>
+                        <div class="delivery-input-group full-width">
+                            <label>Link ảnh đại diện cửa hàng (Tùy chọn)</label>
+                            <input type="text" id="store-image" placeholder="Dán link ảnh (URL) vào đây...">
+                        </div>
+                        <div class="full-width" style="margin-top: 15px;">
+                            <button type="submit" class="btn-primary" style="background: #22C55E; width: auto; padding: 12px 30px;">
+                                <i class="fa-solid fa-rocket"></i> Tạo Cửa Hàng Ngay
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </section>
+        </div>
+    </main>
+
+    <script src="auth.js"></script>
+    <script src="profile.js"></script> </body>
+</html>
