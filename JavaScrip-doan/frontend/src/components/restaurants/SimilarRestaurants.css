@@ -1,14 +1,15 @@
 /* Khung của từng thẻ nhà hàng */
 .similar-card {
   border-radius: 12px;
-  overflow: hidden; /* Cắt phần bị lồi ra khỏi góc bo */
+  overflow: hidden; /* Giữ cho ảnh không bị lồi ra khỏi góc bo tròn */
   display: flex;
   flex-direction: column;
-  height: 180px;
+  height: 220px; /* Tăng chiều cao lên một chút để chứa ảnh to hơn và 2 dòng chữ */
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
   border: 1px solid #eee;
+  background: white;
 }
 
 .similar-card:hover {
@@ -16,29 +17,49 @@
   box-shadow: 0 8px 15px rgba(0,0,0,0.15);
 }
 
-/* Khu vực hiển thị logo */
+/* Khu vực hiển thị logo/ảnh */
 .similar-logo-box {
-  flex: 1; /* Cho khu vực này chiếm hết phần không gian còn lại */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
+  flex: 1; /* Tự động kéo giãn lấp đầy phần không gian bên trên */
+  width: 100%;
+  overflow: hidden; /* Cực kỳ quan trọng để ảnh zoom không tràn ra ngoài */
 }
 
 .similar-logo-box img {
-  width: 70%;
-  max-height: 100px;
-  object-fit: contain; /* Đảm bảo logo không bị méo */
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ép ảnh phóng to phủ kín toàn bộ khung, không chừa khoảng trắng */
+  transition: transform 0.3s ease; /* Thêm hiệu ứng mượt mà khi zoom */
 }
 
-/* Dải màu tên nhà hàng ở dưới đáy */
+/* Hiệu ứng zoom nhẹ ảnh khi di chuột vào Card */
+.similar-card:hover .similar-logo-box img {
+  transform: scale(1.1); 
+}
+
+/* Dải màu chứa tên nhà hàng ở dưới đáy */
 .similar-name-bar {
+  background: #ff8a00; /* Thêm nền màu cam cho đồng bộ với Popular, làm nổi bật chữ trắng */
   padding: 12px 10px;
   text-align: center;
   color: white;
+}
+
+/* Tên quán */
+.similar-title {
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 1rem;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis; /* Nếu tên quá dài sẽ hiện dấu ... */
+  text-overflow: ellipsis; /* Cắt chữ bằng dấu ... nếu tên quá dài */
+  margin-bottom: 4px;
+}
+
+/* Thể loại quán (Fastfood, Bún chả...) */
+.similar-category {
+  font-size: 0.8rem;
+  font-weight: 400;
+  opacity: 0.9; /* Chữ hơi mờ đi một chút để làm nền cho tên quán */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

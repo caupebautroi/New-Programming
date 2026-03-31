@@ -1,0 +1,180 @@
+/* =========================================
+   INSTRUCTION POPUP CSS (POPUP THỨ 3)
+========================================= */
+
+/* 1. Lớp phủ đen mờ (Giữ popup ở giữa màn hình) */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+/* 2. Khung trắng của Popup */
+.instruction-popup {
+  background: white;
+  width: 90%;
+  max-width: 650px;
+  border-radius: 16px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* 3. Nút X đóng popup */
+.popup-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #ff8a00;
+  color: white;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 4. CHỈNH ẢNH (Fix lỗi ảnh khổng lồ) */
+.custom-header-img {
+  width: 100%;
+  height: 180px; /* Ép chiều cao ảnh cố định */
+  object-fit: cover; /* Cắt cúp ảnh cho vừa khung mà không bị méo */
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  display: block;
+}
+
+/* 5. Nội dung bên trong */
+.custom-popup-body {
+  padding: 25px;
+}
+
+.custom-breadcrumbs {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.custom-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin: 0 0 20px 0;
+}
+
+/* 6. STYLE CỦA RIÊNG BƯỚC 3 (Banner & Textarea) */
+.instruction-promo-banner {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-left: 4px solid #ff8a00;
+  padding-left: 15px;
+  margin-bottom: 25px;
+  background-color: #fff9f2; /* Thêm nền cam nhạt cho sang */
+  padding: 15px;
+  border-radius: 0 8px 8px 0;
+}
+
+.instruction-promo-banner p {
+  color: #ff8a00;
+  font-weight: 800;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.promo-thumb {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.instruction-input-container {
+  margin-bottom: 30px;
+}
+
+.instruction-textarea {
+  width: 100%;
+  height: 120px;
+  padding: 15px;
+  border: 1.5px solid #e4e6eb;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: none; 
+  background-color: #fafafa;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.instruction-textarea:focus {
+  border-color: #ff8a00;
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 138, 0, 0.1); /* Hiệu ứng phát sáng viền khi click vào */
+}
+
+/* 7. Footer (Tổng tiền & Nút bấm) */
+.custom-popup-footer {
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+
+.total-orange-btn {
+  background: #ffaa33;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 800;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.custom-footer-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-take-back {
+  background: none;
+  border: none;
+  color: #1a1a1a;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0;
+}
+
+.btn-next-green {
+  background: #008a45;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-next-green:hover {
+  background: #007038;
+}

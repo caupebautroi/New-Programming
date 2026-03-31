@@ -1,85 +1,74 @@
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import "./SimilarRestaurants.css";
 
+// IMPORT HÀM GỌI API: Nhớ sửa lại đường dẫn cho đúng với cấu trúc thư mục của bạn
+import { getAllRestaurants } from "../../services/restaurantService"; 
+
 const SimilarRestaurants = () => {
-  const similarList = [
-    {
-      id: 1,
-      name: "McDonald's London",
-      logo: "https://1000logos.net/wp-content/uploads/2017/03/McDonalds-logo.png",
-      bg: "#E2231A", // Đỏ
-      barColor: "#cc1c14"
-    },
-    {
-      id: 2,
-      name: "Pizza Hut",
-      logo: "https://logos-world.net/wp-content/uploads/2021/10/Pizza-Hut-Logo-2014-2019.png",
-      bg: "#FF8A00", // Cam
-      barColor: "#e67c00"
-    },
-    {
-      id: 3,
-      name: "KFC West London",
-      logo: "https://1000logos.net/wp-content/uploads/2017/03/KFC-Logo.png",
-      bg: "#F44336", // Đỏ nhạt
-      barColor: "#dc3c31"
-    },
-    {
-      id: 4,
-      name: "Texas Chicken",
-      logo: "https://logotypes101.com/logos/810/4328DA140DC27BC25A6B181996854DAF/texas_chicken_logo.png",
-      bg: "#ffffff", // Trắng
-      barColor: "#f2994a" // Dải màu cam
-    },
-    {
-      id: 5,
-      name: "Burger King",
-      logo: "https://tse3.mm.bing.net/th/id/OIP.OWg3VucIsdJbARKDcDvINAHaEK?rs=1&pid=ImgDetMain&o=7&rm=3",
-      bg: "#F5A623", // Vàng cam
-      barColor: "#e0961f"
-    },
-    {
-      id: 6,
-      name: "Sà Bì Chưởng",
-      logo: "https://nhaphonet.vn/wp-content/uploads/2023/04/sa-bi-chuong-ha-noi-do-mixi-pewpew-xemesis-1.jpg",
-      bg: "#F2994A", // Cam nhạt
-      barColor: "#d98942"
-    }
-  ];
+  const { id } = useParams(); // Lấy ID của nhà hàng đang xem
+  const [similarList, setSimilarList] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchSimilar = async () => {
+      try {
+        setLoading(true);
+        // Gọi API lấy toàn bộ danh sách nhà hàng từ Database
+        const data = await getAllRestaurants();
+        
+        // LỌC: Loại bỏ nhà hàng đang xem hiện tại và chỉ lấy tối đa 6 quán
+        const filtered = data
+          .filter((res) => res.id.toString() !== id)
+          .slice(0, 6); 
+
+        setSimilarList(filtered);
+      } catch (error) {
+        console.error("Lỗi lấy danh sách nhà hàng tương tự:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSimilar();
+  }, [id]); // Chạy lại hàm này nếu ID trên URL thay đổi (khách click sang quán khác)
+
+  // Nếu đang tải hoặc không có quán nào thì tạm ẩn đi
+  if (loading || similarList.length === 0) return null;
 
   return (
     <div className="similar-wrapper mt-5 mb-5 pt-4">
       <div className="container">
         <h2 className="fw-bold mb-4">Similar Restaurants</h2>
-        
+
         <div className="row">
-          {similarList.map((restaurant, index) => (
-            <div className="col-md-2 col-6 mb-4" key={index}>
-              
-              {/* Vẫn dùng thẻ Link để bấm vào là chuyển trang được */}
-              <Link 
-                to={`/restaurant/menu/${restaurant.id}`} 
-                style={{ textDecoration: 'none' }}
+          {similarList.map((restaurant) => (
+            <div className="col-md-4 col-6 mb-4" key={restaurant.id}>
+              <Link
+                to={`/restaurant/menu/${restaurant.id}`}
+                style={{ textDecoration: "none" }}
               >
-                <div 
-                  className="similar-card" 
-                  style={{ backgroundColor: restaurant.bg }}
-                >
-                  {/* Phần chứa Logo căn giữa */}
+                <div className="similar-card">
                   <div className="similar-logo-box">
-                    <img src={restaurant.logo} alt={restaurant.name} />
+                    <img
+                      src={
+                        restaurant.image ||
+                        "https://via.placeholder.com/300x200?text=No+Image"
+                      }
+                      alt={restaurant.name}
+                      onError={(e) => {
+                        // Nếu link ảnh trong DB bị lỗi/chết, tự động thay bằng ảnh dự phòng
+                        e.target.src = "https://via.placeholder.com/300x200?text=Food";
+                      }}
+                    />
                   </div>
-                  
-                  {/* Dải màu chứa tên nhà hàng ở đáy */}
-                  <div 
-                    className="similar-name-bar"
-                    style={{ backgroundColor: restaurant.barColor }}
-                  >
-                    {restaurant.name}
+
+                  <div className="similar-name-bar">
+                    <div className="similar-title">{restaurant.name || "Chưa có tên"}</div>
+                    <div className="similar-category">{restaurant.category || "Đang cập nhật"}</div>
                   </div>
                 </div>
               </Link>
-
             </div>
           ))}
         </div>

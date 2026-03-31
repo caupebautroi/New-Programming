@@ -1,0 +1,178 @@
+.tracking-page {
+  min-height: 100vh;
+  background: #f3f3f3;
+  padding: 32px 20px;
+  box-sizing: border-box;
+}
+
+.tracking-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+.tracking-card,
+.summary-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+.success-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #ecfdf3;
+  border: 1px solid #b7ebc6;
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 24px;
+}
+
+.success-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #16a34a;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.success-box h1 {
+  margin: 0 0 6px;
+  font-size: 28px;
+  color: #111827;
+}
+
+.success-box p {
+  margin: 0;
+  color: #4b5563;
+}
+
+.tracking-info h2 {
+  margin-bottom: 8px;
+  color: #111827;
+}
+
+.estimated-time {
+  color: #ff7a00;
+  font-weight: 600;
+  margin-bottom: 22px;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.timeline-step {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.timeline-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+.timeline-dot.active {
+  background: #16a34a;
+}
+
+.timeline-dot.inactive {
+  background: #d1d5db;
+}
+
+.timeline-content h4 {
+  margin: 0 0 4px;
+  color: #111827;
+}
+
+.timeline-content p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.pickup-delivery-box,
+.order-id-box {
+  margin-top: 24px;
+  background: #f9fafb;
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.pickup-delivery-box h3,
+.order-id-box h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  color: #111827;
+}
+
+.pickup-delivery-box p,
+.order-id-box p {
+  margin: 8px 0;
+  color: #4b5563;
+}
+
+.tracking-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.primary-btn,
+.secondary-btn {
+  border: none;
+  border-radius: 12px;
+  padding: 14px 22px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.primary-btn {
+  background: #ff7a00;
+  color: white;
+}
+
+.secondary-btn {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+.summary-card h2 {
+  margin-bottom: 22px;
+  color: #111827;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  color: #374151;
+}
+
+.summary-row.total {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+}
+
+@media (max-width: 900px) {
+  .tracking-container {
+    grid-template-columns: 1fr;
+  }
+}

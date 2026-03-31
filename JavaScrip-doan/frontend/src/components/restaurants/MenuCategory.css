@@ -1,56 +1,93 @@
-/* Tiêu đề to và đậm */
-.category-title {
-  font-weight: 800;
-  font-size: 2rem;
-  color: #000;
+/* =========================================
+   FULL CSS CHO MENU CATEGORY (CHUẨN 3 CỘT)
+========================================= */
+
+/* 1. Reset cơ bản để tránh lỗi tràn lề (bắt buộc) */
+* {
+  box-sizing: border-box;
 }
 
-/* Thẻ món ăn dùng flexbox để dàn hàng ngang */
+/* 2. Container chính (dùng khi bạn muốn class thay cho style inline) */
+.menu-category {
+  margin-bottom: 40px;
+  width: 100%; /* Chỉ giữ lại 2 dòng này */
+}
+/* 3. Tiêu đề (Burgers, Fries...) */
+.category-title {
+  font-weight: 800;
+  font-size: 1.75rem;
+  color: #1a1a1a;
+  margin-bottom: 24px;
+}
+
+/* 4. Lưới Grid 3 cột */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+/* 5. Khung thẻ món ăn */
 .food-card {
   display: flex;
   justify-content: space-between;
-  align-items: stretch;
-  background: white;
-  border-radius: 12px;
+  background: #ffffff;
+  border-radius: 16px;
   padding: 16px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-  height: 100%;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
   border: 1px solid #f0f0f0;
+  height: 160px;
+  min-width: 0; /* RẤT QUAN TRỌNG: Ép thẻ không được phình to làm vỡ Grid */
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-/* Cột thông tin chữ chiếm phần lớn không gian */
+.food-card:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+/* 6. Cột chữ bên trái */
 .food-info {
   flex: 1;
-  padding-right: 15px;
+  padding-right: 16px;
   display: flex;
   flex-direction: column;
+  min-width: 0; /* RẤT QUAN TRỌNG: Ép chữ thu nhỏ theo khung */
 }
 
 .food-name {
   font-weight: 700;
-  font-size: 1.1rem;
-  margin-bottom: 8px;
+  font-size: 1rem;
+  color: #1a1a1a;
+  margin: 0 0 8px 0;
+  /* Ép tên nằm trên 1 dòng, dài quá thì thành dấu ... */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* Giới hạn mô tả ở 3 dòng, dài quá hiện dấu ... */
 .food-desc {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: #666;
-  margin-bottom: auto; /* Đẩy giá tiền xuống sát đáy */
+  margin: 0;
+  line-height: 1.4;
+  /* Ép mô tả tối đa 2 dòng, cắt phần dư bằng dấu ... */
   display: -webkit-box;
-  
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
 .food-price {
-  font-weight: 700;
+  font-weight: 800;
   font-size: 1rem;
-  margin-top: 10px;
-  margin-bottom: 0;
+  color: #1a1a1a;
+  margin: 0;
+  margin-top: auto; /* Tự động đẩy giá tiền xuống sát đáy */
 }
 
-/* Hộp chứa ảnh bên phải cố định kích thước */
+/* 7. Cột ảnh bên phải */
 .food-image-box {
   width: 120px;
   height: 120px;
@@ -65,68 +102,57 @@
   border-radius: 12px;
 }
 
-/* Nút bấm tròn trịa đè lên góc ảnh */
-.add-btn {
+/* 8. Viền trắng bọc nút cộng */
+.add-btn-wrapper {
   position: absolute;
-  bottom: -10px;
-  right: -10px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  bottom: -8px;
+  right: -8px; /* Thò ra góc dưới bên phải một chút */
   background: white;
-  color: black;
-  border: 1px solid #f0f0f0;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 4px;
+  border-radius: 50%;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* 9. Nút cộng màu đen */
+.add-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #1a1a1a;
+  color: white;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease;
+  line-height: 1;
+  padding-bottom: 2px;
 }
 
 .add-btn:hover {
-  background: #0b1a30;
-  color: white;
+  background: #ff7a00; /* Đổi sang màu cam khi di chuột vào */
 }
 
-.food-card {
-  transition: all 0.3s ease;
-  cursor: pointer;
+/* 10. Responsive: Tự động thu nhỏ cột khi xem trên iPad / Điện thoại */
+@media (max-width: 1024px) {
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-.food-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-}
-
-.food-img {
-  transition: transform 0.4s ease;
-}
-
-.food-card:hover .food-img {
-  transform: scale(1.1);
-}
-
-.add-btn {
-  transition: all 0.25s ease;
-}
-
-.food-card:hover .add-btn {
-  transform: scale(1.1);
-  background: #ff7a00;
-  color: white;
-}
-
-.food-card:hover {
-  box-shadow: 0 10px 25px rgba(255, 122, 0, 0.15);
-}
-
-.food-name {
-  transition: color 0.3s ease;
-}
-
-.food-card:hover .food-name {
-  color: #ff7a00;
+@media (max-width: 768px) {
+  .category-grid {
+    grid-template-columns: 1fr;
+  }
+  .food-card {
+    height: 140px; 
+  }
+  .food-image-box {
+    width: 100px;
+    height: 100px;
+  }
 }

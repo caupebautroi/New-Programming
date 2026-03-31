@@ -1,32 +1,46 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./MenuNav.css";
 
-const MenuNav = () => {
-  // Danh sách các danh mục món ăn
-  const categories = [
-    "Offers", "Burgers", "Fries", "Snacks", "Salads", 
-    "Cold drinks", "Happy Meal®", "Desserts", "Hot drinks", "Sauces", "Orbit®"
-  ];
-
-  // State để theo dõi tab đang được chọn, mặc định là "Offers"
+const MenuNav = ({ categories = [] }) => {
   const [activeTab, setActiveTab] = useState("Offers");
+
+  const navItems = ["Offers", ...categories];
+
+  useEffect(() => {
+    if (navItems.length > 0) {
+      setActiveTab(navItems[0]);
+    }
+  }, [categories]);
+
+  const handleClick = (category) => {
+    setActiveTab(category);
+
+    if (category === "Offers") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    const sectionId = `category-${category}`;
+    const section = document.getElementById(sectionId);
+
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   return (
     <div className="menu-nav-wrapper mt-4 mb-5">
       <div className="container">
         <div className="menu-nav-list d-flex align-items-center">
-          
-          {categories.map((category, index) => (
+          {navItems.map((category) => (
             <button
-              key={index}
-              // Thêm class 'active' nếu tab này đang được chọn
+              key={category}
               className={`menu-nav-item ${activeTab === category ? "active" : ""}`}
-              onClick={() => setActiveTab(category)}
+              onClick={() => handleClick(category)}
             >
               {category}
             </button>
           ))}
-
         </div>
       </div>
     </div>

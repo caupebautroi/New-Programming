@@ -1,11 +1,17 @@
-import axiosClient from '../api/axiosClient';
+import axiosClient from "../api/axiosClient";
 
 // Lấy danh sách món ăn của 1 nhà hàng
-export const getDishesByRestaurant = async (restaurantId) => {
-    return await axiosClient.get(`/restaurants/${restaurantId}/dishes`);
-};
+export const getDishesByRestaurant = (restaurantId) =>
+  axiosClient.get(`/restaurants/${restaurantId}/dishes`);
 
-// Thêm món ăn mới (Dành cho chủ quán)
-export const addDish = async (dishData) => {
-    return await axiosClient.post('/dishes', dishData);
-};
+// Thêm món ăn mới
+export const addDish = (dishData) =>
+  axiosClient.post("/dishes", dishData);
+
+// Sửa món ăn
+export const updateDish = (dishId, dishData) =>
+  axiosClient.put(`/dishes/${dishId}`, dishData);
+
+// Xóa món ăn
+export const deleteDish = (dishId) =>
+  axiosClient.delete(`/dishes/${dishId}`);

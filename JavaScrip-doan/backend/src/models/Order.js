@@ -2,20 +2,61 @@ const db = require('../config/db');
 
 class Order {
     static async create(orderData) {
-        const { user_id, total_price, address, phone, receiver_name, note, items } = orderData;
-        
-        // Sử dụng Transaction để đảm bảo nếu lưu items lỗi thì order cũng không được tạo
+        const {
+            user_id,
+            restaurant_id,
+            total_price,
+            address,
+            phone,
+            receiver_name,
+            note,
+            status,
+            items
+        } = orderData;
+
         const conn = await db.getConnection();
+
         try {
             await conn.beginTransaction();
 
-            const sqlOrder = "INSERT INTO orders (user_id, total_price, address, phone, receiver_name, note) VALUES (?, ?, ?, ?, ?, ?)";
-            const [orderResult] = await conn.execute(sqlOrder, [user_id, total_price, address, phone, receiver_name, note]);
+            const sqlOrder = `
+                INSERT INTO orders (
+                    user_id,
+                    restaurant_id,
+                    total_price,
+                    address,
+                    phone,
+                    receiver_name,
+                    note,
+                    status
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            `;
+
+            const [orderResult] = await conn.execute(sqlOrder, [
+                user_id,
+                restaurant_id,
+                total_price,
+                address,
+                phone,
+                receiver_name,
+                note || null,
+                status || 'Chờ xác nhận'
+            ]);
+
             const orderId = orderResult.insertId;
 
-            const sqlItems = "INSERT INTO order_items (order_id, dish_name, price, quantity) VALUES (?, ?, ?, ?)";
+            const sqlItems = `
+                INSERT INTO order_items (order_id, dish_name, price, quantity)
+                VALUES (?, ?, ?, ?)
+            `;
+
             for (const item of items) {
-                await conn.execute(sqlItems, [orderId, item.dish_name, item.price, item.quantity]);
+                await conn.execute(sqlItems, [
+                    orderId,
+                    item.dish_name,
+                    item.price,
+                    item.quantity
+                ]);
             }
 
             await conn.commit();
@@ -27,16 +68,34 @@ class Order {
             conn.release();
         }
     }
-    // Thêm vào class Order
+
     static async getByUserId(userId) {
-        // JOIN bảng orders với order_items để lấy đầy đủ chi tiết
         const sql = `
-            SELECT o.*, 
-                JSON_ARRAYAGG(JSON_OBJECT('dish_name', oi.dish_name, 'price', oi.price, 'quantity', oi.quantity)) as items
+            SELECT
+                o.id,
+                o.user_id,
+                o.restaurant_id,
+                o.total_price,
+                o.receiver_name,
+                o.phone,
+                o.address,
+                o.note,
+                o.status,
+                o.created_at,
+                JSON_ARRAYAGG(
+                    JSON_OBJECT(
+                        'dish_name', oi.dish_name,
+                        'price', oi.price,
+                        'quantity', oi.quantity
+                    )
+                ) AS items
             FROM orders o
             LEFT JOIN order_items oi ON o.id = oi.order_id
             WHERE o.user_id = ?
-            GROUP BY o.id
+            GROUP BY
+                o.id, o.user_id, o.restaurant_id, o.total_price,
+                o.receiver_name, o.phone, o.address, o.note,
+                o.status, o.created_at
             ORDER BY o.created_at DESC
         `;
         const [rows] = await db.execute(sql, [userId]);
@@ -49,19 +108,39 @@ class Order {
     }
 
     static async getByStoreOwner(ownerId) {
-    const sql = `
-        SELECT o.*, 
-            JSON_ARRAYAGG(JSON_OBJECT('dish_name', oi.dish_name, 'price', oi.price, 'quantity', oi.quantity)) as items
-        FROM orders o
-        JOIN order_items oi ON o.id = oi.order_id
-        JOIN dishes d ON oi.dish_name = d.name
-        JOIN restaurants r ON d.restaurant_id = r.id
-        WHERE r.owner_id = ?
-        GROUP BY o.id
-        ORDER BY o.created_at DESC
-    `;
-    const [rows] = await db.execute(sql, [ownerId]);
-    return rows;
+        const sql = `
+            SELECT
+                o.id,
+                o.user_id,
+                o.restaurant_id,
+                o.total_price,
+                o.receiver_name,
+                o.phone,
+                o.address,
+                o.note,
+                o.status,
+                o.created_at,
+                r.name AS restaurant_name,
+                JSON_ARRAYAGG(
+                    JSON_OBJECT(
+                        'dish_name', oi.dish_name,
+                        'price', oi.price,
+                        'quantity', oi.quantity
+                    )
+                ) AS items
+            FROM orders o
+            LEFT JOIN order_items oi ON o.id = oi.order_id
+            INNER JOIN restaurants r ON o.restaurant_id = r.id
+            INNER JOIN users u ON r.owner = u.username
+            WHERE u.id = ?
+            GROUP BY
+                o.id, o.user_id, o.restaurant_id, o.total_price,
+                o.receiver_name, o.phone, o.address, o.note,
+                o.status, o.created_at, r.name
+            ORDER BY o.created_at DESC
+        `;
+        const [rows] = await db.execute(sql, [ownerId]);
+        return rows;
     }
 }
 

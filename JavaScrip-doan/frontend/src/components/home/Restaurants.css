@@ -29,17 +29,25 @@ box-shadow:0 10px 20px rgba(0,0,0,0.1);
 
 /* logo area */
 
-.restaurant-logo{
-height:120px;
-display:flex;
-align-items:center;
-justify-content:center;
+.restaurant-logo {
+  height: 160px; /* Tăng chiều cao một chút cho ảnh rõ nét hơn */
+  width: 100%;
+  overflow: hidden; /* Cắt bỏ phần ảnh thừa ra ngoài khung */
 }
 
-.restaurant-logo img{
-width:90px;
-height:90px;
-object-fit:contain;
+.restaurant-logo img {
+  width: 100%;    /* Ảnh luôn rộng bằng khung */
+  height: 100%;   /* Ảnh luôn cao bằng khung */
+  
+  /* ĐÂY LÀ DÒNG QUAN TRỌNG NHẤT */
+  object-fit: cover; 
+  
+  transition: transform 0.3s ease; /* Hiệu ứng zoom nhẹ khi hover */
+}
+
+/* Hiệu ứng khi di chuột vào card thì ảnh hơi to lên một chút */
+.restaurant-card:hover .restaurant-logo img {
+  transform: scale(1.1);
 }
 
 /* name bar */

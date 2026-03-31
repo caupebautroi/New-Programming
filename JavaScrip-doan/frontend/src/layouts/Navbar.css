@@ -175,3 +175,33 @@
 .login-btn:hover {
   background: #ff8a00;
 }
+.user-auth-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-name-badge {
+  background: #fff3cd;
+  color: #8a5a00;
+  border: 1px solid #ffe08a;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.logout-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.logout-btn:hover {
+  background: #b02a37;
+}
